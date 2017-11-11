@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const lighthouse = require('lighthouse');
 const puppeteer = require('puppeteer');
 const program = require('commander');
