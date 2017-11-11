@@ -1,0 +1,30 @@
+{
+  "name": "lighthouse-bundle",
+  "version": "1.0.0",
+  "description": "Run lighthouse reports against multiple websites, with authentication if needed",
+  "main": "index.js",
+  "bin": {
+    "lighthouse-bundle": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessicascott/lighthouse-bundle.git"
+  },
+  "keywords": [
+    "lighthouse",
+    "puppeteer",
+    "chrome",
+    "audits"
+  ],
+  "author": "Jessica Scott",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jessicascott/lighthouse-bundle/issues"
+  },
+  "homepage": "https://github.com/jessicascott/lighthouse-bundle#readme",
+  "dependencies": {
+    "commander": "^2.11.0",
+    "lighthouse": "^2.5.0",
+    "puppeteer": "^0.13.0"
+  }
+}
