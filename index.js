@@ -21,7 +21,7 @@ const PWD = process.env.PWD;
 const siteFile = program.sites ? `${PWD}/${program.sites}` : `${PWD}/sites.js`;
 const sites = require(siteFile);
 
-const outputDir = program.out ? `${PWD}/${program.out}` : `${PWD}/lighthouse-reports`;
+const outputDir = program.out ? `${program.out}` : `lighthouse-reports`;
 if (!fs.existsSync(outputDir)){
   fs.mkdirSync(outputDir);
 }
@@ -43,8 +43,8 @@ async function runChrome(url, arg, fileName, subDir) {
   }
   const results = await page.goto(url).then(() => {
     return lighthouse(url, settings).then((results) => {
-      if (!fs.existsSync(`${outputDir}/${subDir}`)){
-        fs.mkdirSync(`${outputDir}/${subDir}`);
+      if (!fs.existsSync(`${PWD}/${outputDir}/${subDir}`)){
+        fs.mkdirSync(`${PWD}/${outputDir}/${subDir}`);
       }
 
       const total = results.reportCategories.reduce((sum, cat) => sum + cat.score, 0);
@@ -56,7 +56,7 @@ async function runChrome(url, arg, fileName, subDir) {
         json: `${outputDir}/${subDir}/${fileName}.json`
       };
 
-      fs.writeFile(`${outputDir}/${subDir}/${fileName}.json`, JSON.stringify(results, null, 4), 'utf8', (err) => {
+      fs.writeFile(`${PWD}/${outputDir}/${subDir}/${fileName}.json`, JSON.stringify(results, null, 4), 'utf8', (err) => {
         if (err) throw err;
         console.log(`Lighthouse complete. Output written to ${outputDir}/${subDir}/${fileName}.json`);
       });
@@ -81,7 +81,7 @@ async function loopSites(sites) {
       report.push(summary);
     }
   }
-  fs.writeFileSync(`${outputDir}/summary.json`, JSON.stringify(report, null, 4), 'utf8');
+  fs.writeFileSync(`${PWD}/${outputDir}/summary.json`, JSON.stringify(report, null, 4), 'utf8');
 
   console.log(`Done! A summary is available in ${outputDir}/summary.json`);
 }
