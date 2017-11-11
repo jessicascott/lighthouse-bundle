@@ -25,6 +25,7 @@ module.exports = [
     ]
   }
 ]
+```
 
 ### Useage
 
@@ -42,12 +43,8 @@ lighthouse-bundle -s mysites.js -o public/reports
 lighthouse-bundle -u youruser -p yourpas
 ```
 
-
+### Options
 ```
-lighthouse-bundle [options]
-
-Options:
-
   -s, --sites <sites>    the file that contains a list of sites, defaults to './sites.js
   -o, --out [out]        the output folder to place reports, defaults to './lighthouse-reports'
   -u, --user <user>      your username for authentication
