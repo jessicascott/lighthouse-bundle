@@ -17,10 +17,11 @@ program
   .option('-v, --verbose', 'enable verbose logging')
   .parse(process.argv);
 
-const siteFile = program.sites ? program.sites : './sites.js';
+const PWD = process.env.PWD;
+const siteFile = program.sites ? `${PWD}/${program.sites}` : `${PWD}/sites.js`;
 const sites = require(siteFile);
 
-const outputDir = program.out ? program.out : './lighthouse-reports';
+const outputDir = program.out ? `${PWD}/${program.out}` : `${PWD}/lighthouse-reports`;
 if (!fs.existsSync(outputDir)){
   fs.mkdirSync(outputDir);
 }
